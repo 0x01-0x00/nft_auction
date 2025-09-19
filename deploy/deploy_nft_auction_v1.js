@@ -15,6 +15,7 @@ module.exports = async ({getNamedAccounts, deployments}) => {
     const {deploy, save} = deployments;
     const {deployer} = await getNamedAccounts();
 
+    console.log("==========>deploy_nft_auction_V1 ");
     console.log("部署用户地址: ", deployer);
 
     // 获取NFT拍卖合约工厂实例
