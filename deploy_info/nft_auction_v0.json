@@ -1,0 +1,11 @@
+{
+  "proxyAddr": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+  "implAddr": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+  "abi": [
+    "function admin() view returns (address)",
+    "function auction() view returns (address,uint256,address,uint256,uint256,uint256,bool,address,uint256)",
+    "function createAuction(address,uint256,uint256,uint256)",
+    "function initialize()",
+    "function startBid() payable"
+  ]
+}
