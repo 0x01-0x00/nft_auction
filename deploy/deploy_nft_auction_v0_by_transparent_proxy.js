@@ -56,6 +56,6 @@ module.exports = async ({getNamedAccounts, deployments}) => {
     });
 };
 
-module.exports.tags = ["ExportsTags_DeployNftAuctionV0"];
+module.exports.tags = ["ExportsTags_DeployNftAuctionV0ByTransparentProxy"];
 
-// 部署命令：npx hardhat deploy --tags ExportsTags_DeployNftAuctionV0
+// 部署命令：npx hardhat deploy --tags ExportsTags_DeployNftAuctionV0ByTransparentProxy
