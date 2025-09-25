@@ -9,8 +9,10 @@ module.exports = async ({getNamedAccounts, deployments}) => {
     console.log("==========> deploy_nft_auction_v0_by_transparent_proxy");
     console.log("部署用户地址: ", admin);
 
+    // 获取合约工厂
     const NftAuctionV0 = await ethers.getContractFactory("nft_auction_v0");
-    // 部署透明代理合约，使用initialize作为初始化函数
+    // console.log("nft_auction_v0合约工厂: ", NftAuctionV0);
+    // 部署透明代理合约，初始化方法为initialize
     const nftAuctionV0TransparentProxy = await upgrades.deployProxy(
         NftAuctionV0,
         [],
@@ -18,12 +20,13 @@ module.exports = async ({getNamedAccounts, deployments}) => {
     );
     // 等待代理合约部署完成
     await nftAuctionV0TransparentProxy.waitForDeployment()
-
-
+    // 获取代理合约地址和实现合约地址，以及实现合约abi
     const transparentProxyAddr = await nftAuctionV0TransparentProxy.getAddress();
-    console.log("代理合约地址: ", transparentProxyAddr);
     const implAddr = await upgrades.erc1967.getImplementationAddress(transparentProxyAddr);
+    const implAbi = NftAuctionV0.interface.format("json");
+    console.log("代理合约地址: ", transparentProxyAddr);
     console.log("实现合约地址: ", implAddr);
+    console.log("实现合约abi: ", implAbi);
 
 
     // 定义部署信息存储路径
@@ -41,7 +44,7 @@ module.exports = async ({getNamedAccounts, deployments}) => {
         JSON.stringify({
             proxyAddr: transparentProxyAddr,
             implAddr: implAddr,
-            abi: NftAuctionV0.interface.format("json"),
+            abi: implAbi,
         }, null, 2)
     );
 
@@ -49,7 +52,7 @@ module.exports = async ({getNamedAccounts, deployments}) => {
     // 保存已部署合约的元数据
     await save("transparentProxy", {
         address: transparentProxyAddr,
-        abi: NftAuctionV0.interface.format("json"),
+        abi: implAbi,
     });
 };
 
