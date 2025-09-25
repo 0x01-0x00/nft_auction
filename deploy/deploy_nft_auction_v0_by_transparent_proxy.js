@@ -6,7 +6,7 @@ module.exports = async ({getNamedAccounts, deployments}) => {
     const {save} = deployments;
     const {admin} = await getNamedAccounts();
 
-    console.log("==========> deploy_nft_auction_v0_by_transparent_proxy");
+    console.log("{{ deploy_nft_auction_v0_by_transparent_proxy");
     console.log("部署用户地址: ", admin);
 
     // 获取合约工厂
@@ -54,6 +54,8 @@ module.exports = async ({getNamedAccounts, deployments}) => {
         address: transparentProxyAddr,
         abi: implAbi,
     });
+
+    console.log("deploy_nft_auction_v0_by_transparent_proxy }}");
 };
 
 module.exports.tags = ["ExportsTags_DeployNftAuctionV0ByTransparentProxy"];
