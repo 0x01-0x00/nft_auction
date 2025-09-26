@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.10;
 
-import "hardhat-deploy/solc_0.8/openzeppelin/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts/proxy/utils/Initializable.sol";
 
 contract nft_auction_v1 is Initializable {
     // 拍卖信息
